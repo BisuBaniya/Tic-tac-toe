@@ -5,17 +5,25 @@ export default function Player({ initialName, playerSymbol }) {
   const [name, setName] = useState(initialName);
 
   function handlEditClick() {
-    setIsEditing(item => !item);
+    setIsEditing((item) => !item);
   }
 
-  function handleChange(event){
-    console.log(event);
+  function handleChange(event) {
+    setName(event.target.value);
   }
 
   let editContent = <span className="player-name">{name}</span>;
 
-  if(isEditing){
-    editContent = <input type="text" name="Enter Name" defaultValue={name} onChange={handleChange} required/>;
+  if (isEditing) {
+    editContent = (
+      <input
+        type="text"
+        name="Enter Name"
+        defaultValue={name}
+        onChange={handleChange}
+        required
+      />
+    );
   }
 
   return (
@@ -24,7 +32,7 @@ export default function Player({ initialName, playerSymbol }) {
         {editContent}
         <span className="player-symbol">{playerSymbol}</span>
       </span>
-      <button onClick={handlEditClick}>{isEditing? 'Save': 'Edit'}</button>
+      <button onClick={handlEditClick}>{isEditing ? "Save" : "Edit"}</button>
     </li>
   );
 }
